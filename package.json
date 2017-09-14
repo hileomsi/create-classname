@@ -6,11 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hileomsi/create-classname.git"
+  },
   "keywords": [
     "React",
     "Props",
     "ClassName"
   ],
-  "author": "Hiléo Andersson",
-  "license": "ISC"
+  "author": "Hiléo Andercsson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hileomsi/create-classname/issues"
+  },
+  "homepage": "https://github.com/hileomsi/create-classname#readme"
 }

@@ -1,6 +1,10 @@
 # createClassName 
 🎈 - Create className based on an object's conditions. 
 
+[![NPM version](https://badge.fury.io/js/create-classname.png)](http://badge.fury.io/js/create-classname)
+
+[![Npm Downloads](https://nodei.co/npm/create-classname.png?downloads=true&stars=true)](https://nodei.co/npm/create-classname.png?downloads=true&stars=true)
+
 ### Installation
 
 Install the dependencies.
