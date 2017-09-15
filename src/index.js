@@ -9,10 +9,14 @@ const createClassName = (defaultClassName = '', props = {}, mapping = []) => {
     return (typeof className === 'function') ? className(props) : className;
   }
 
+  const getDefaultClassName = () => {
+    return `${defaultClassName.trim()} ${props.className ? props.className.trim() : ''}`;
+  }
+
   if(typeof defaultClassName != 'string' || typeof props != 'object' || !Array.isArray(mapping))
     throw new Error('TypeError: invalid arguments types');
 
-  defaultClassName = defaultClassName.trim();
+  defaultClassName = getDefaultClassName();
   return mapping.reduce((previous, current, index) => {
     if(typeof current.verifier === 'string' && props[current.verifier]){
       return `${previous} ${getClassName(current.className)}`;

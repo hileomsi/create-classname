@@ -18,7 +18,7 @@ $ yarn add create-classname
 ### Definition
 
 ```js
-    creaClassName(defaultClassName, data | props, mapping);
+    createClassName(defaultClassName, data | props, mapping);
 ```
 
 - defaultClassName: *string*
