@@ -14,7 +14,7 @@ const getDefaultClassName = (defaultClassName, componentProps) => {
   return `${defaultClassName.trim()} ${className}`;
 }
 // { className = '', props = [], keepComponentProps = false }
-const createClassName = (foo, foo2, foo3) => {
+const createClassName = (foo, foo2 = [], foo3) => {
   let className = '', props = [], keepComponentProps = false;
   if(typeof foo === 'string'){
     className = foo;
