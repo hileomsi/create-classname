@@ -24,4 +24,4 @@ const createClassName = (defaultClassName = '', props = {}, mapping = []) => {
   }, defaultClassName);
 }
 
-export default createClassName;
+module.exports = createClassName;
