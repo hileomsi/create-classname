@@ -8,28 +8,28 @@ const getDefaultClassName = (defaultClassName, { className }) => {
   return `${defaultClassName.trim()} ${className ? className.trim() : ''}`;
 }
 
-const createClassName = (defaultClassName = '', mapping = [], removeProp = true) => {
+const createClassName = ({ className = '', props = [], keepComponentProps = false }) => {
   
-  return ( props = {} ) => {
+  return ( componentProps = {} ) => {
 
-    const getClassName = (verifier, className) => {
-      if(removeProp) delete props[verifier];
-      return (typeof className === 'function') ? className(props) : className;
+    const getClassName = (name, className) => {
+      if(!keepComponentProps) delete componentProps[name];
+      return (typeof className === 'function') ? className(componentProps) : className;
     }
   
-    if(typeof defaultClassName != 'string' || typeof props != 'object' || !Array.isArray(mapping))
+    if(typeof className != 'string' || typeof componentProps != 'object' || !Array.isArray(props))
       throw new Error('TypeError: invalid arguments types');
   
-    defaultClassName = getDefaultClassName(defaultClassName, props);
-    return mapping.reduce((previous, current, index) => {
-      if(typeof current.verifier === 'string' && props[current.verifier]){
-        return `${previous} ${getClassName(current.verifier, current.className)}`;
-      } else if(typeof current.verifier === 'function' && current.verifier(props) === true) {
-        return `${previous} ${getClassName(current.verifier(props), current.className)}`;
+    className = getDefaultClassName(className, componentProps);
+    return props.reduce((previous, current, index) => {
+      if(typeof current.name === 'string' && componentProps[current.name]){
+        return `${previous} ${getClassName(current.name, current.className)}`;
+      } else if(typeof current.name === 'function' && current.name(componentProps) === true) {
+        return `${previous} ${getClassName(current.name(componentProps), current.className)}`;
       }
   
       return previous;
-    }, defaultClassName);
+    }, className);
 
   }
 
