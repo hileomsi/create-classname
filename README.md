@@ -47,7 +47,7 @@ $ yarn add create-classname
 
 ```js
 //MyButton.jsx
-import createClassName from 'create-classname';
+import { createClassName } from 'create-classname';
 
 export default class MyButton extends Component {
 	constructor(props) {
