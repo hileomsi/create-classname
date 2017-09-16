@@ -27,13 +27,14 @@ const createClassName = (foo = '', foo2 = [], foo3 = false) => {
   }
   
   return ( componentProps = {} ) => {
+    const immutableProps = Object.assign({}, componentProps);
 
     const getClassName = (name, className) => {
       if(!componentProps[name]) return '';
       if(!className) className = name;
       if(!keepComponentProps) delete componentProps[name];
 
-      return (typeof className === 'function') ? className(componentProps) : className;
+      return (typeof className === 'function') ? className(immutableProps) : className;
     }
 
     const destructingString = (n) => {
@@ -52,8 +53,8 @@ const createClassName = (foo = '', foo2 = [], foo3 = false) => {
         return `${previous} ${getClassName(current.name, current.className)}`;
       } else if(typeof current.name === 'string' && componentProps[current.name]){
         return `${previous} ${getClassName(current.name, current.className)}`;
-      } else if(typeof current.name === 'function' && current.name(componentProps) === true) {
-        return `${previous} ${getClassName(current.name(componentProps), current.className)}`;
+      } else if(typeof current.name === 'function' && current.name(immutableProps) === true) {
+        return `${previous} ${getClassName(current.name(immutableProps), current.className)}`;
       }
   
       return previous;

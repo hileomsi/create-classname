@@ -1,6 +1,6 @@
 {
   "name": "create-classname",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Create className based on an object's conditions",
   "main": "src/index.js",
   "scripts": {
