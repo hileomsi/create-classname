@@ -11,7 +11,7 @@ const getDefaultClassName = (defaultClassName, componentProps) => {
     delete componentProps.className;
   }
 
-  return `${defaultClassName.trim()} ${className}`;
+  return `${defaultClassName.trim()} ${className}`.trim();
 }
 // { className = '', props = [], keepComponentProps = false }
 const createClassName = (foo, foo2, foo3) => {
