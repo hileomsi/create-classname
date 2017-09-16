@@ -29,6 +29,7 @@ const createClassName = (foo, foo2, foo3) => {
   return ( componentProps = {} ) => {
 
     const getClassName = (name, className) => {
+      if(!componentProps[name]) return '';
       if(!className) className = name;
       if(!keepComponentProps) delete componentProps[name];
 
