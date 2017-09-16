@@ -14,7 +14,7 @@ const getDefaultClassName = (defaultClassName, componentProps) => {
   return `${defaultClassName.trim()} ${className}`.trim();
 }
 // { className = '', props = [], keepComponentProps = false }
-const createClassName = (foo, foo2 = [], foo3) => {
+const createClassName = (foo = '', foo2 = [], foo3 = false) => {
   let className = '', props = [], keepComponentProps = false;
   if(typeof foo === 'string'){
     className = foo;
@@ -46,7 +46,7 @@ const createClassName = (foo, foo2 = [], foo3) => {
     if(typeof className != 'string' || typeof componentProps != 'object' || !Array.isArray(props))
       throw new Error('TypeError: invalid arguments types');
   
-    className = props.reduce((previous, current, index) => {
+    let classN = props.reduce((previous, current, index) => {
       if(typeof current === 'string'){
         current = destructingString(current);
         return `${previous} ${getClassName(current.name, current.className)}`;
@@ -59,7 +59,7 @@ const createClassName = (foo, foo2 = [], foo3) => {
       return previous;
     }, className);
 
-    return getDefaultClassName(className, componentProps);
+    return getDefaultClassName(classN, componentProps);
   }
 
 }
