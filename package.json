@@ -1,6 +1,6 @@
 {
   "name": "create-classname",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Create className based on an object's conditions",
   "main": "dist/bundle.js",
   "scripts": {
