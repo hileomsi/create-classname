@@ -1,4 +1,4 @@
-const { createClassName } = require('./src');
+const { createClassName } = require('./dist/bundle');
 
 // const c = createClassName({
 //   props: [

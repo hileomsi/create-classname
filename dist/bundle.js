@@ -1,3 +1,9 @@
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+	typeof define === 'function' && define.amd ? define(['exports'], factory) :
+	(factory((global.createClassName = {})));
+}(this, (function (exports) { 'use strict';
+
 /**
 |--------------------------------------------------
 |  CreateClassName
@@ -12,10 +18,10 @@ const getDefaultClassName = (defaultClassName, componentProps) => {
   }
 
   return `${defaultClassName.trim()} ${className}`.trim();
-}
+};
 // { className = '', props = [], keepComponentProps = false }
 
-export const createClassName = (foo = '', foo2 = [], foo3 = false) => {
+const createClassName = (foo = '', foo2 = [], foo3 = false) => {
   let className = '', props = [], keepComponentProps = false;
   if(typeof foo === 'string'){
     className = foo;
@@ -37,14 +43,14 @@ export const createClassName = (foo = '', foo2 = [], foo3 = false) => {
       if(!keepComponentProps) delete componentProps[name];
 
       return (typeof className === 'function') ? className(immutableProps) : className;
-    }
+    };
 
     const destructingString = (n) => {
       const [name, className, overrideDefault] = n.split(':');
       if(!name) throw new Error('TypeError: format props invalid');  
       console.log(overrideDefault == 'override');
       return  { name, className: className ? className : name, overrideDefault: (overrideDefault == 'override') };
-    }
+    };
   
     if(typeof className != 'string' || typeof componentProps != 'object' || !Array.isArray(props))
       throw new Error('TypeError: invalid arguments types');
@@ -73,6 +79,10 @@ export const createClassName = (foo = '', foo2 = [], foo3 = false) => {
     return getDefaultClassName(classN, componentProps);
   }
 
-}
+};
 
+exports.createClassName = createClassName;
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
