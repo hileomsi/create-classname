@@ -6,7 +6,10 @@ const { createClassName } = require('./src');
 //   ],
 //   className: 'button'
 // });
-const c = createClassName('button', ['big:button-big']);
+// const c = createClassName('button', ['big:button-big']);
+const c = createClassName('button', [{
+  name: 'big', className: 'button-big', overrideDefault: true
+}]);
 const props = {
   big: true,
   className: 'col'

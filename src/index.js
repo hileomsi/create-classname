@@ -28,6 +28,7 @@ const createClassName = (foo = '', foo2 = [], foo3 = false) => {
   
   return ( componentProps = {} ) => {
     const immutableProps = Object.assign({}, componentProps);
+    let overrideDefault = false;
 
     const getClassName = (name, className) => {
       if(!componentProps[name]) return '';
@@ -38,27 +39,35 @@ const createClassName = (foo = '', foo2 = [], foo3 = false) => {
     }
 
     const destructingString = (n) => {
-      const [name, className] = n.split(':');
+      const [name, className, overrideDefault] = n.split(':');
       if(!name) throw new Error('TypeError: format props invalid');  
-
-      return  { name, className: className ? className : name };
+      console.log(overrideDefault == 'override');
+      return  { name, className: className ? className : name, overrideDefault: (overrideDefault == 'override') };
     }
   
     if(typeof className != 'string' || typeof componentProps != 'object' || !Array.isArray(props))
       throw new Error('TypeError: invalid arguments types');
   
     let classN = props.reduce((previous, current, index) => {
-      if(typeof current === 'string'){
+      if(typeof current === 'string') 
         current = destructingString(current);
-        return `${previous} ${getClassName(current.name, current.className)}`;
-      } else if(typeof current.name === 'string' && componentProps[current.name]){
+      
+      if(!overrideDefault) {
+        console.log('if',current.overrideDefault);
+        overrideDefault = (current.overrideDefault === true);
+        console.log('if 2',overrideDefault);
+      }
+
+      if(typeof current.name === 'string' && componentProps[current.name]) {
         return `${previous} ${getClassName(current.name, current.className)}`;
       } else if(typeof current.name === 'function' && current.name(immutableProps) === true) {
         return `${previous} ${getClassName(current.name(immutableProps), current.className)}`;
       }
   
       return previous;
-    }, className);
+    }, '');
+
+    if(!overrideDefault) classN = `${className} ${classN}`;
 
     return getDefaultClassName(classN, componentProps);
   }
