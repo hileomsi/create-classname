@@ -2,7 +2,7 @@
   "name": "create-classname",
   "version": "1.0.11",
   "description": "Create className based on an object's conditions",
-  "main": "src/index.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup src/index.js --o dist/bundle.js -f umd --name 'createClassName'"
