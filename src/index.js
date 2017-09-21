@@ -42,7 +42,7 @@ export const createClassName = (foo = '', foo2 = [], foo3 = false) => {
     const destructingString = (n) => {
       const [name, className, overrideDefault] = n.split(':');
       if(!name) throw new Error('TypeError: format props invalid');  
-      console.log(overrideDefault == 'override');
+      
       return  { name, className: className ? className : name, overrideDefault: (overrideDefault == 'override') };
     }
   
@@ -54,9 +54,7 @@ export const createClassName = (foo = '', foo2 = [], foo3 = false) => {
         current = destructingString(current);
       
       if(!overrideDefault) {
-        console.log('if',current.overrideDefault);
         overrideDefault = (current.overrideDefault === true);
-        console.log('if 2',overrideDefault);
       }
 
       if(typeof current.name === 'string' && componentProps[current.name]) {
