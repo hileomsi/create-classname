@@ -212,6 +212,15 @@ var getDefaultClassName = function getDefaultClassName(defaultClassName, compone
 
   return (defaultClassName.trim() + ' ' + className).trim();
 };
+
+var hasProps = function hasProps(name, props) {
+  var attribute = name;
+  if (typeof name == 'function') attribute = name();
+
+  if (typeof attribute == 'boolean') return attribute;
+
+  return props[attribute];
+};
 // { className = '', props = [], keepComponentProps = false }
 
 var createClassName = function createClassName() {
@@ -254,7 +263,7 @@ var createClassName = function createClassName() {
           overrideDefault = _n$split2[2];
 
       if (!name) throw new Error('TypeError: format props invalid');
-      console.log(overrideDefault == 'override');
+
       return { name: name, className: className ? className : name, overrideDefault: overrideDefault == 'override' };
     };
 
@@ -263,10 +272,8 @@ var createClassName = function createClassName() {
     var classN = props.reduce(function (previous, current, index) {
       if (typeof current === 'string') current = destructingString(current);
 
-      if (!overrideDefault) {
-        console.log('if', current.overrideDefault);
+      if (!overrideDefault && hasProps(current.name, immutableProps)) {
         overrideDefault = current.overrideDefault === true;
-        console.log('if 2', overrideDefault);
       }
 
       if (typeof current.name === 'string' && componentProps[current.name]) {
@@ -285,3 +292,4 @@ var createClassName = function createClassName() {
 };
 
 exports.createClassName = createClassName;
+exports['default'] = createClassName;

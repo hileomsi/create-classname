@@ -13,6 +13,17 @@ const getDefaultClassName = (defaultClassName, componentProps) => {
 
   return `${defaultClassName.trim()} ${className}`.trim();
 }
+
+const hasProps = (name, props) => {
+  let attribute = name;
+  if(typeof name == 'function')
+    attribute = name();
+  
+  if(typeof attribute == 'boolean')
+    return attribute;
+  
+  return props[attribute];
+}
 // { className = '', props = [], keepComponentProps = false }
 
 export const createClassName = (foo = '', foo2 = [], foo3 = false) => {
@@ -53,7 +64,7 @@ export const createClassName = (foo = '', foo2 = [], foo3 = false) => {
       if(typeof current === 'string') 
         current = destructingString(current);
       
-      if(!overrideDefault) {
+      if(!overrideDefault && hasProps(current.name, immutableProps)) {
         overrideDefault = (current.overrideDefault === true);
       }
 
@@ -73,4 +84,4 @@ export const createClassName = (foo = '', foo2 = [], foo3 = false) => {
 
 }
 
-
+export default createClassName;

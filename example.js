@@ -1,4 +1,5 @@
 const { createClassName } = require('./dist/bundle');
+// const { createClassName } = require('./src/index');
 
 // const c = createClassName({
 //   props: [
@@ -10,8 +11,8 @@ const { createClassName } = require('./dist/bundle');
 const c = createClassName('button', [{
   name: 'big', className: 'button-big', overrideDefault: true
 }]);
+
 const props = {
-  big: true,
   className: 'col'
 };
 
@@ -24,6 +25,7 @@ const props3 = {
   big: true,
   className: 'col'
 };
+
 console.log(c(props));
 console.log(c(props2));
 console.log(c(props3));
